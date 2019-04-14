@@ -2,6 +2,8 @@
 
 StateMachine stateMachine = StateMachine();
 
+int gameTime = 120;
+
 State* S0 = stateMachine.addState(&welcomeState); 
 State* S1 = stateMachine.addState(&selectGameState);
 State* S2 = stateMachine.addState(&basicGameState);
@@ -22,6 +24,9 @@ void runStateMachine() {
 
 void welcomeState() {
   Serial.println("Welcome state");
+  printWelcomeScreen();
+  delay(5000);
+  printStartScreen();
  
 }
 
@@ -33,23 +38,25 @@ bool welcomeToSelectGameTransition() {
 
 void selectGameState() {
   Serial.println("Select game state");
+  printGameSelect("BASICO");
   
 }
 
 bool selectGameToBasicGameTransition() {
   delay(5000);
+  printLetsPlayScreen();
+  delay(2000);
   return true;
 }
 
 
 void basicGameState() {
   Serial.println("Basic game state");
-  
 }
 
 bool gameToEndGameTransition() {
-  delay(5000);
-  return true;
+  printGameTimeScreen(&gameTime);
+  return false;
 }
 
 
