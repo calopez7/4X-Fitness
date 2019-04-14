@@ -1,12 +1,12 @@
-#include "SevSeg.h"
 
-SevSeg score;
 
 void setup() {
- initializeScore(score);
-  
+ Serial.begin(115200);
+ //initializeScore();
+  initializeStates();
 }
 
 void loop() {
-score.refreshDisplay();
+//scoreScreen.refreshDisplay();
+ runStateMachine();
 }
