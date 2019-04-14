@@ -1,16 +1,33 @@
-void initializeScore(SevSeg score) {
-  byte numDigits = 4;
-  byte digitPins[] = {1,2,3,4};
-  byte segmentPins[] = {13,6,11,9,8,7,12,10};
+#include "SevSeg.h"
 
-  bool resistorsOnSegments = false; // 'false' means resistors are on digit pins
-  byte hardwareConfig = COMMON_ANODE; // See README.md for options
-  bool updateWithDelays = false; // Default 'false' is Recommended
-  bool leadingZeros = false; // Use 'true' if you'd like to keep the leading zeros
-  bool disableDecPoint = false; // Use 'true' if your decimal point doesn't exist or isn't connected. Then, you only need to specify 7 segmentPins[]
+SevSeg scoreScreen;//object to manage the seven segment screen
+int score;//holds the score 
 
-  score.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments, updateWithDelays, leadingZeros);
+byte numDigits = 4;
+byte digitPins[4] {8, 11, 12, 2}; // From com1 - com4 TODO cambiar pines
+byte segmentPins[8] {9, 13, 4, 6, 7, 10, 3,5}; // From a - g (abc...g) TODO cambiar pines
+bool resistorsOnSegments = false; // 'false' means resistors are on digit pins
+byte hardwareConfig = COMMON_CATHODE; // See README.md for options
+bool updateWithDelays = false; // Default 'false' is Recommended
+bool leadingZeros = true; // Use 'true' if you'd like to keep the leading zeros
 
-score.setBrightness(10);
-  score.setNumber(1234,0);
+void initializeScore() {
+  score = 0;
+  scoreScreen.begin(hardwareConfig, numDigits, digitPins, segmentPins, resistorsOnSegments,
+  updateWithDelays, leadingZeros);
+  scoreScreen.setNumber(score,0);
+}
+
+void refreshScore() {
+  scoreScreen.refreshDisplay();
+}
+
+void addScore(int points) {
+  score += points;
+  scoreScreen.setNumber(score,0);
+}
+
+void resetScore() {
+  score = 0;
+  scoreScreen.setNumber(score,0);
 }
