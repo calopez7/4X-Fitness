@@ -10,6 +10,6 @@ void setup() {
 
 void loop() {
  //scoreScreen.refreshDisplay();
- runStateMachine();
- 
+ loopButtons();
+ runStateMachine(); 
 }

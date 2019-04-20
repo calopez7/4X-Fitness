@@ -36,10 +36,10 @@ void welcomeState() {
 
 bool welcomeToSelectGameTransition() {
 
-  if (digitalRead(BUTTON_CENTER_UP_PIN) == LOW) {
-    S0NotExecuted = true;
+  if (checkButtonState(BUTTON_CENTER_UP_PIN)) {
+    changeButtonState(BUTTON_CENTER_UP_PIN,false);
     return true;
-  }  
+  }
   return false;
 }
 
@@ -55,12 +55,10 @@ void selectGameState() {
 
 bool selectGameToBasicGameTransition() {
   
-   if (digitalRead(BUTTON_CENTER_UP_PIN) == LOW) {
-    printLetsPlayScreen();
-    delay(2000);
-    S1NotExecuted = true;
+  if (checkButtonState(BUTTON_CENTER_UP_PIN)) {
+    changeButtonState(BUTTON_CENTER_UP_PIN,false);
     return true;
-  }  
+  }
   return false;
 }
 
