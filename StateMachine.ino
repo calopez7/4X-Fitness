@@ -11,6 +11,7 @@ State* S3 = stateMachine.addState(&gameOverState);
 
 bool S0NotExecuted = true;
 bool S1NotExecuted = true;
+bool S3NotExecuted = true;
 
 void initializeStates() {
   S0->addTransition(&welcomeToSelectGameTransition,S1);
@@ -38,6 +39,7 @@ bool welcomeToSelectGameTransition() {
 
   if (checkButtonState(BUTTON_CENTER_UP_PIN)) {
     changeButtonState(BUTTON_CENTER_UP_PIN,false);
+    S0NotExecuted = true;
     return true;
   }
   return false;
@@ -57,6 +59,7 @@ bool selectGameToBasicGameTransition() {
   
   if (checkButtonState(BUTTON_CENTER_UP_PIN)) {
     changeButtonState(BUTTON_CENTER_UP_PIN,false);
+    S1NotExecuted = true;
     return true;
   }
   return false;
@@ -68,17 +71,27 @@ void basicGameState() {
 }
 
 bool gameToEndGameTransition() {
-  printGameTimeScreen(&gameTime);
-  return false;
+  //printGameTimeScreen(&gameTime);
+  delay(5000);
+  return true;
 }
 
 
 void gameOverState() {
-  Serial.println("Game over state");
+  
+  if (S3NotExecuted) {
+    Serial.println("Game over state");
+    S3NotExecuted = false;
+    printGameOver();
+  }
   
 }
 
 bool gameOverToWelcomeTransition() {
-  delay(5000);
-  return true;
+  if (checkButtonState(BUTTON_CENTER_UP_PIN)) {
+    changeButtonState(BUTTON_CENTER_UP_PIN,false);
+    S3NotExecuted = true;
+    return true;
+  }
+  return false;
 }

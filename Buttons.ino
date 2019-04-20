@@ -68,7 +68,6 @@ void loopButtons() {
 void buttonPressedHandler(Button2& btn) {
   if (btn == buttonCenterUp) {
     changeButtonState(BUTTON_CENTER_UP_PIN,true);
-    Serial.println("PRESSED");
   }
          
 }
