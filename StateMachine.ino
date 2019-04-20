@@ -9,6 +9,9 @@ State* S1 = stateMachine.addState(&selectGameState);
 State* S2 = stateMachine.addState(&basicGameState);
 State* S3 = stateMachine.addState(&gameOverState);
 
+bool S0NotExecuted = true;
+bool S1NotExecuted = true;
+
 void initializeStates() {
   S0->addTransition(&welcomeToSelectGameTransition,S1);
   S1->addTransition(&selectGameToBasicGameTransition,S2);
@@ -23,30 +26,42 @@ void runStateMachine() {
 }
 
 void welcomeState() {
-  Serial.println("Welcome state");
-  printWelcomeScreen();
-  delay(5000);
-  printStartScreen();
- 
+
+  if (S0NotExecuted) {
+    Serial.println("Welcome state");
+    S0NotExecuted = false;
+    printWelcomeScreen(); 
+  }
 }
 
 bool welcomeToSelectGameTransition() {
-  delay(5000);
-  return true;
+
+  if (digitalRead(BUTTON_CENTER_UP_PIN) == LOW) {
+    S0NotExecuted = true;
+    return true;
+  }  
+  return false;
 }
 
 
 void selectGameState() {
-  Serial.println("Select game state");
-  printGameSelect("BASICO");
-  
+
+  if (S1NotExecuted) {
+    Serial.println("Select game state");
+    S1NotExecuted = false;
+    printGameSelect("BASICO");
+  }
 }
 
 bool selectGameToBasicGameTransition() {
-  delay(5000);
-  printLetsPlayScreen();
-  delay(2000);
-  return true;
+  
+   if (digitalRead(BUTTON_CENTER_UP_PIN) == LOW) {
+    printLetsPlayScreen();
+    delay(2000);
+    S1NotExecuted = true;
+    return true;
+  }  
+  return false;
 }
 
 

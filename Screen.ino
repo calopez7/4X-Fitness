@@ -26,6 +26,14 @@ void printWelcomeScreen() {
   display.print("4X FITNESS");
   display.setCursor(3,1);
   display.print("BIENVENIDO");
+
+  unsigned long currentMillis = millis();
+
+  if (currentMillis - previousMillis >= 3000) {
+    previousMillis = currentMillis;
+    printStartScreen();  
+  }
+
 }
 
 void printStartScreen() {

@@ -3,11 +3,13 @@
 void setup() {
  Serial.begin(115200);
  //initializeScore();
- initializeScreen();
+ initializeButtons();
+// initializeScreen();
  initializeStates();
 }
 
 void loop() {
  //scoreScreen.refreshDisplay();
  runStateMachine();
+ 
 }
