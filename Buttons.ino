@@ -77,32 +77,7 @@ void loopButtons() {
 }
 
 void buttonPressedHandler(Button2& btn) {
-  
-  if (btn == buttonCenterUp) {
-    changeButtonState(BUTTON_CENTER_UP_PIN,true);
-  } else if (btn == buttonCenterDown) {
-    changeButtonState(BUTTON_CENTER_DOWN_PIN,true);
-  } else if (btn == buttonP1A) {
-    changeButtonState(BUTTON_P1_A_PIN,true);
-  } else if (btn == buttonP1B) {
-    changeButtonState(BUTTON_P1_B_PIN,true);
-  } else if (btn == buttonP1C) {
-    changeButtonState(BUTTON_P1_C_PIN,true);
-  } else if (btn == buttonP1D) {
-    changeButtonState(BUTTON_P1_D_PIN,true);
-  } else if (btn == buttonP1E) {
-    changeButtonState(BUTTON_P1_E_PIN,true);
-  } else if (btn == buttonP2A) {
-    changeButtonState(BUTTON_P2_A_PIN,true);
-  } else if (btn == buttonP2B) {
-    changeButtonState(BUTTON_P2_B_PIN,true);
-  } else if (btn == buttonP2C) {
-    changeButtonState(BUTTON_P2_C_PIN,true);
-  } else if (btn == buttonP2D) {
-    changeButtonState(BUTTON_P2_D_PIN,true);
-  } else if (btn == buttonP2E) {
-    changeButtonState(BUTTON_P2_E_PIN,true);
-  }
+  changeButtonState(btn.getAttachPin(),true);
 }
 
 void changeButtonState(int button,bool state) {

@@ -5,4 +5,4 @@
 - [SevSeg](https://github.com/DeanIsMe/SevSeg)
 - [LiquidCrystal](https://www.arduino.cc/en/Reference/LiquidCrystal)
 - [StateMachine](https://github.com/jrullan/StateMachine)
-- [Button2](https://github.com/LennartHennigs/Button2)
+- [Button2](https://github.com/lewisxhe/Button2) - Use this version as it has the getAttachPin() method
