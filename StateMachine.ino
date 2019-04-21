@@ -54,8 +54,8 @@ void selectGameState() {
     Serial.println("Select game state");
     S1NotExecuted = false;
     printGameSelect("BASICO");
-    turnOnLed(BUTTON_P2_A);
-    turnOnLed(BUTTON_P2_B);
+    turnOnLed(LED_P2_A_PIN);
+    turnOnLed(LED_P2_B_PIN);
   }
   blinkLed(LED_CENTER_UP_PIN,1000);
 }
