@@ -33,12 +33,14 @@ void welcomeState() {
     S0NotExecuted = false;
     printWelcomeScreen(); 
   }
+  blinkLed(LED_CENTER_UP_PIN,1000);
 }
 
 bool welcomeToSelectGameTransition() {
 
   if (checkButtonState(BUTTON_CENTER_UP_PIN)) {
     changeButtonState(BUTTON_CENTER_UP_PIN,false);
+    turnOffLed(LED_CENTER_UP_PIN);
     S0NotExecuted = true;
     return true;
   }
@@ -52,13 +54,17 @@ void selectGameState() {
     Serial.println("Select game state");
     S1NotExecuted = false;
     printGameSelect("BASICO");
+    turnOnLed(BUTTON_P2_A);
+    turnOnLed(BUTTON_P2_B);
   }
+  blinkLed(LED_CENTER_UP_PIN,1000);
 }
 
 bool selectGameToBasicGameTransition() {
   
   if (checkButtonState(BUTTON_CENTER_UP_PIN)) {
     changeButtonState(BUTTON_CENTER_UP_PIN,false);
+    turnOffLed(LED_CENTER_UP_PIN);
     S1NotExecuted = true;
     return true;
   }
@@ -84,7 +90,7 @@ void gameOverState() {
     S3NotExecuted = false;
     printGameOver();
   }
-  
+  blinkLed(LED_CENTER_UP_PIN,500);
 }
 
 bool gameOverToWelcomeTransition() {
